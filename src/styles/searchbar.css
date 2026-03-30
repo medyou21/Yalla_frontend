@@ -1,0 +1,76 @@
+/* ---------------------------- */
+/* SearchBar Styles */
+/* ---------------------------- */
+
+.search-bar {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: white;
+  padding: 12px 16px;
+  border-radius: 12px;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15);
+  flex-wrap: wrap;
+  justify-content: center;
+  margin: 20px 0;
+  margin-top: 200px;
+}
+
+.search-bar input,
+.search-bar select {
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  outline: none;
+  font-size: 14px;
+}
+
+.search-bar input[type="date"] {
+  padding: 8px;
+}
+
+.search-bar input:focus,
+.search-bar select:focus {
+  border-color: #2e9e53;
+  box-shadow: 0 0 5px rgba(46, 158, 83, 0.5);
+}
+
+.search-bar button.btn-search {
+  background: #2e9e53;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background 0.3s;
+}
+
+.search-bar button.btn-search:hover {
+  background: #248244;
+}
+
+/* Optional: input icon spacing */
+.search-bar .field {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.search-bar .field span {
+  font-size: 16px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .search-bar {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .search-bar input,
+  .search-bar select,
+  .search-bar button {
+    width: 100%;
+  }
+}

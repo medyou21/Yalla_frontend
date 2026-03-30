@@ -1,0 +1,412 @@
+/* ----------------------------
+   GLOBAL
+---------------------------- */
+
+.triplist-page,
+.tripdetails-container,
+.tripreservation-page {
+  max-width: 900px;
+  margin: auto;
+  padding: 25px;
+  font-family: "Roboto", Arial, sans-serif;
+  color: #2c3e50;
+  background: #f5f7fb;
+}
+
+/* ----------------------------
+   HEADER TRAJET
+---------------------------- */
+
+.trip-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #ffffff;
+  padding: 20px;
+  border-radius: 14px;
+  margin-bottom: 20px;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.06);
+}
+
+.trip-header .trip-route {
+  font-size: 22px;
+  font-weight: 600;
+}
+
+.trip-header .trip-date {
+  font-size: 14px;
+  color: #7f8c8d;
+}
+
+.trip-header .trip-price {
+  font-size: 22px;
+  font-weight: bold;
+  color: #27ae60;
+}
+
+/* ----------------------------
+   GRID
+---------------------------- */
+
+.trips-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* ----------------------------
+   CARD TRAJET
+---------------------------- */
+
+.trip-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #ffffff;
+  padding: 18px;
+  border-radius: 16px;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.05);
+  transition: all 0.25s ease;
+  position: relative;
+}
+
+.trip-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 28px rgba(0,0,0,0.08);
+}
+
+/* ----------------------------
+   DRIVER / PASSAGER
+---------------------------- */
+
+.driver-section {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-width: 170px;
+}
+
+.driver-img {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid #ecf0f1;
+}
+
+.driver-name {
+  font-weight: 600;
+}
+
+.driver-rating {
+  font-size: 13px;
+  color: #f39c12;
+}
+
+.driver-car {
+  font-size: 12px;
+  color: #95a5a6;
+}
+
+/* ----------------------------
+   ROUTE (TIMELINE)
+---------------------------- */
+
+.trip-route {
+  flex: 1;
+  padding: 0 25px;
+}
+
+.route-cities {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 600;
+}
+
+.route-line {
+  flex: 1;
+  height: 3px;
+  background: linear-gradient(to right, #ddd, #ccc);
+  position: relative;
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+/* 🚗 animation voiture améliorée */
+.route-line::after {
+  content: "🚗";
+  position: absolute;
+  top: -12px;
+  left: 0;
+  animation: moveCar 5s linear infinite;
+}
+
+@keyframes moveCar {
+  0% { left: -10px; }
+  100% { left: 100%; }
+}
+
+/* ----------------------------
+   META INFOS
+---------------------------- */
+
+.trip-meta {
+  font-size: 13px;
+  color: #7f8c8d;
+  margin-top: 6px;
+}
+
+.trip-seats {
+  font-size: 13px;
+  margin-top: 4px;
+  color: #34495e;
+  font-weight: 500;
+}
+
+.trip-desc {
+  font-size: 13px;
+  color: #95a5a6;
+  margin-top: 4px;
+}
+
+/* ----------------------------
+   ACTION
+---------------------------- */
+
+.trip-action {
+  text-align: right;
+  min-width: 140px;
+}
+
+.trip-price {
+  font-size: 20px;
+  font-weight: bold;
+  color: #27ae60;
+  margin-bottom: 8px;
+}
+
+/* ----------------------------
+   BUTTONS
+---------------------------- */
+
+.btn-reserve {
+  display: inline-block;
+  background: linear-gradient(135deg, #00AEEF, #008dc5);
+  color: white;
+  border: none;
+  padding: 10px 16px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: all 0.2s ease;
+}
+
+.btn-reserve:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 14px rgba(0,174,239,0.3);
+}
+
+.btn-confirm {
+  width: 100%;
+  background: linear-gradient(135deg, #2e7d32, #256628);
+  color: white;
+  padding: 12px;
+  border: none;
+  border-radius: 10px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: 0.25s;
+}
+
+.btn-confirm:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(46,125,50,0.3);
+}
+
+/* ----------------------------
+   STATUS BADGES
+---------------------------- */
+
+.status {
+  padding: 6px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.status-pending {
+  background: #fff3cd;
+  color: #856404;
+}
+
+.status-confirmed {
+  background: #d4edda;
+  color: #155724;
+}
+
+.status-canceled {
+  background: #f8d7da;
+  color: #721c24;
+}
+
+/* ----------------------------
+   FULL / EMPTY
+---------------------------- */
+
+.full-trip {
+  color: #e74c3c;
+  font-weight: bold;
+}
+
+/* ----------------------------
+   DRIVER CARD (DETAILS)
+---------------------------- */
+
+.driver-card {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  background: white;
+  padding: 18px;
+  border-radius: 14px;
+  margin-bottom: 15px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+}
+
+/* ----------------------------
+   INFOS TRAJET
+---------------------------- */
+
+.trip-info-card {
+  background: white;
+  padding: 18px;
+  border-radius: 14px;
+  margin-bottom: 20px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+}
+
+.trip-info-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 6px 0;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.trip-info-row:last-child {
+  border-bottom: none;
+}
+
+/* ----------------------------
+   RESERVATION
+---------------------------- */
+
+.reservation-summary {
+  background: #ffffff;
+  padding: 18px;
+  border-radius: 14px;
+  margin-bottom: 20px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+}
+
+.summary-title {
+  font-size: 13px;
+  color: #95a5a6;
+  margin-bottom: 8px;
+}
+
+.summary-route {
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.summary-driver,
+.summary-date,
+.summary-price {
+  font-size: 14px;
+  margin: 4px 0;
+}
+
+/* ----------------------------
+   FORM
+---------------------------- */
+
+.reservation-form {
+  background: white;
+  padding: 20px;
+  border-radius: 14px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+}
+
+.form-row {
+  display: flex;
+  gap: 15px;
+  margin-bottom: 15px;
+}
+
+.form-group {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.form-group label {
+  font-size: 13px;
+  margin-bottom: 6px;
+  color: #555;
+}
+
+.form-group input,
+.form-group select {
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  transition: 0.2s;
+}
+
+.form-group input:focus,
+.form-group select:focus {
+  border-color: #00AEEF;
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(0,174,239,0.1);
+}
+
+/* ----------------------------
+   RESPONSIVE
+---------------------------- */
+
+@media (max-width: 768px) {
+
+  .trip-card {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 15px;
+  }
+
+  .trip-route {
+    padding: 0;
+    width: 100%;
+  }
+
+  .trip-action {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .trip-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+
+  .driver-card {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .form-row {
+    flex-direction: column;
+  }
+}
