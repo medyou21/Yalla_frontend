@@ -1,0 +1,234 @@
+/* ========================================
+   Variables
+======================================== */
+$primary-color: #0077b6;
+$secondary-color: #00b4d8;
+$background-color: #f8f9fa;
+$text-color: #212529;
+$border-radius: 8px;
+$font-family: 'Arial', sans-serif;
+
+/* ========================================
+   Global
+======================================== */
+body {
+  font-family: $font-family;
+  background-color: $background-color;
+  margin: 0;
+  padding: 0;
+  color: $text-color;
+}
+
+a {
+  text-decoration: none;
+  color: $primary-color;
+}
+
+button {
+  cursor: pointer;
+  border: none;
+  border-radius: $border-radius;
+  background-color: $primary-color;
+  color: #fff;
+  padding: 10px 15px;
+  font-weight: bold;
+  transition: background 0.3s ease;
+
+  &:hover {
+    background-color: darken($primary-color, 10%);
+  }
+}
+
+input, select, textarea {
+  padding: 10px;
+  border-radius: $border-radius;
+  border: 1px solid lighten($text-color, 50%);
+  width: 100%;
+  margin-bottom: 15px;
+  box-sizing: border-box;
+}
+
+/* ========================================
+   Header / Navbar
+======================================== */
+header {
+  background-color: $primary-color;
+  padding: 15px 20px;
+  color: #fff;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  .logo {
+    font-size: 1.5rem;
+    font-weight: bold;
+  }
+
+  nav a {
+    margin-left: 20px;
+    color: #fff;
+    font-weight: bold;
+    transition: color 0.3s ease;
+
+    &:hover {
+      color: $secondary-color;
+    }
+  }
+}
+
+/* ========================================
+   Formulaires
+======================================== */
+.form-container {
+  max-width: 400px;
+  margin: 50px auto;
+  background: #fff;
+  padding: 30px;
+  border-radius: $border-radius;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+
+  h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: $primary-color;
+  }
+
+  form {
+    display: flex;
+    flex-direction: column;
+
+    button {
+      margin-top: 10px;
+    }
+  }
+}
+
+/* ========================================
+   Dashboard
+======================================== */
+.dashboard {
+  max-width: 1000px;
+  margin: 50px auto;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+
+  h1 {
+    color: $primary-color;
+  }
+
+  .user-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    button {
+      background-color: $secondary-color;
+
+      &:hover {
+        background-color: darken($secondary-color, 10%);
+      }
+    }
+  }
+}
+
+/* ========================================
+   Trip List
+======================================== */
+.trip-list {
+  max-width: 800px;
+  margin: 20px auto;
+
+  .trip-card {
+    background: #fff;
+    padding: 20px;
+    border-radius: $border-radius;
+    box-shadow: 0 3px 8px rgba(0,0,0,0.1);
+    margin-bottom: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    p {
+      margin: 0;
+      font-weight: bold;
+    }
+
+    button {
+      background-color: $secondary-color;
+
+      &:hover {
+        background-color: darken($secondary-color, 10%);
+      }
+    }
+  }
+}
+
+/* ========================================
+   Messages
+======================================== */
+.messages {
+  max-width: 600px;
+  margin: 20px auto;
+  background: #fff;
+  border-radius: $border-radius;
+  padding: 20px;
+  box-shadow: 0 3px 8px rgba(0,0,0,0.1);
+
+  .message {
+    padding: 10px;
+    border-bottom: 1px solid lighten($text-color, 80%);
+
+    &:last-child {
+      border-bottom: none;
+    }
+
+    b {
+      color: $primary-color;
+    }
+  }
+
+  input {
+    margin-top: 15px;
+  }
+}
+
+/* ========================================
+   Responsive
+======================================== */
+@media (max-width: 768px) {
+  .dashboard, .trip-list, .messages, .form-container {
+    margin: 20px;
+    width: auto;
+  }
+
+  header {
+    flex-direction: column;
+    gap: 10px;
+    text-align: center;
+  }
+}
+
+.navbar{
+  background:#0077b6;
+  color:white;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:15px 30px;
+}
+
+.navbar nav{
+  display:flex;
+  gap:20px;
+}
+
+.navbar a{
+  color:white;
+  font-weight:bold;
+}
+
+.logo{
+  font-size:22px;
+  font-weight:bold;
+}
