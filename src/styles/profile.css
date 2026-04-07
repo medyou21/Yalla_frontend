@@ -1,0 +1,57 @@
+.profileContainer {
+  max-width: 550px;
+  margin: 40px auto;
+  padding: 25px;
+  border-radius: 16px;
+  background: white;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+  transition: 0.3s;
+}
+
+/* hover effet pro */
+.profileContainer:hover {
+  transform: translateY(-3px);
+}
+
+.profileTitle {
+  text-align: center;
+  margin-bottom: 20px;
+  font-weight: bold;
+}
+
+/* ROLES */
+.rolesBox {
+  padding: 10px 0;
+}
+
+.rolesTitle {
+  font-weight: 500;
+  margin-bottom: 8px;
+}
+
+/* CHECKBOX CUSTOM */
+.checkboxCustom.Mui-checked {
+  color: #2e9e53 !important;
+}
+
+/* BUTTON */
+.saveBtn {
+  background: #2e9e53 !important;
+  padding: 12px !important;
+  font-weight: bold;
+  border-radius: 10px !important;
+  transition: 0.3s;
+}
+
+.saveBtn:hover {
+  background: #248244 !important;
+  transform: scale(1.02);
+}
+
+/* RESPONSIVE */
+@media (max-width: 600px) {
+  .profileContainer {
+    margin: 10px;
+    padding: 15px;
+  }
+}

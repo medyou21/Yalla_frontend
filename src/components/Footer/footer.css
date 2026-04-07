@@ -1,0 +1,112 @@
+/* ============================
+   FOOTER GLOBAL
+============================ */
+.footer{
+  background:#1e1e1e;
+  color:#ddd;
+  margin-top:40px;
+  padding-top:30px;
+}
+
+/* ============================
+   TOP
+============================ */
+.footer-top{
+  max-width:1100px;
+  margin:auto;
+  display:flex;
+  justify-content:space-between;
+  flex-wrap:wrap;
+  gap:30px;
+  padding:0 20px 30px;
+}
+
+/* COL */
+.footer-col{
+  flex:1;
+  min-width:200px;
+}
+
+/* LOGO */
+.footer-logo{
+  color:#2e9e53;
+  font-weight:bold;
+}
+
+/* DESC */
+.footer-desc{
+  font-size:14px;
+  color:#aaa;
+  margin-top:8px;
+}
+
+/* TITRE */
+.footer-title{
+  font-weight:600;
+  margin-bottom:10px;
+  color:#fff;
+}
+
+/* LINKS */
+.footer a{
+  text-decoration:none;
+  color:#ccc;
+  font-size:14px;
+  transition:0.2s;
+}
+
+.footer a:hover{
+  color:#2e9e53;
+}
+
+/* SOCIAL */
+.social-btn{
+  color:#ccc !important;
+  transition:0.3s;
+}
+
+.social-btn:hover{
+  color:#2e9e53 !important;
+  transform:scale(1.2);
+}
+
+/* ============================
+   BOTTOM
+============================ */
+.footer-bottom{
+  border-top:1px solid #333;
+  text-align:center;
+  padding:15px;
+  font-size:13px;
+  color:#aaa;
+}
+
+/* ============================
+   RESPONSIVE
+============================ */
+@media (max-width:768px){
+  .footer-top{
+    flex-direction:column;
+    gap:20px;
+  }
+}
+/* ============================
+   LEGAL LINKS BAS
+============================ */
+.footer-legal-links{
+  margin-top:8px;
+  display:flex;
+  justify-content:center;
+  gap:15px;
+  flex-wrap:wrap;
+}
+
+.footer-legal-links a{
+  font-size:12px;
+  color:#aaa;
+  text-decoration:none;
+}
+
+.footer-legal-links a:hover{
+  color:#2e9e53;
+}

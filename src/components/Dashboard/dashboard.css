@@ -1,0 +1,36 @@
+.heroCustom {
+  min-height: 350px;
+  background:
+    linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)),
+    url("../../../public/hero.png");
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  text-align: center;
+  padding: 20px;
+}
+
+.searchContainer {
+  margin-top: 20px;
+  padding: 16px;
+  border-radius: 16px;
+  backdrop-filter: blur(12px);
+  background: rgba(255,255,255,0.2);
+  width: 100%;
+  max-width: 800px;
+}
+
+.cardCustom {
+  text-align: center;
+  padding: 20px;
+  transition: 0.3s;
+}
+
+.cardCustom:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+}

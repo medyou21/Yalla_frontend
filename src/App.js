@@ -1,4 +1,3 @@
-// src/App.js
 import {
   BrowserRouter as Router,
   Routes,
@@ -19,18 +18,38 @@ import TripForm from "./components/Trips/TripForm";
 import TripSearch from "./components/Trips/TripSearch";
 import RealtimeChat from "./components/Messages/RealtimeChat";
 import Profile from "./components/Profile/Profile";
-
 import MyReservations from "./components/Trips/MyReservations";
 import TripReservationsDriver from "./components/Trips/TripReservationsDriver";
+import Footer from "./components/Footer/Footer";
 
 import { SocketProvider } from "./context/SocketProvider";
 import { getUser } from "./utils/auth";
+
+import MentionsLegales from "./components/pages/Legal/MentionsLegales";
+import Privacy from "./components/pages/Legal/Privacy";
+import Terms from "./components/pages/Legal/Terms";
+import Cookies from "./components/pages/Legal/Cookies";
+
+import CookieBanner from "./components/Cookies/CookieBanner";
+
+/* ================= PROTECTED ROUTES ================= */
+
+const ProtectedRoute = ({ user, children }) => {
+  return user ? children : <Navigate to="/login" replace />;
+};
+
+const RoleRoute = ({ user, role, children }) => {
+  return user && user.roles?.includes(role)
+    ? children
+    : <Navigate to="/login" replace />;
+};
+
+/* ================= APP ================= */
 
 function App() {
   const [user, setUser] = useState(null);
   const [loadingUser, setLoadingUser] = useState(true);
 
-  // 🔥 Chargement user depuis JWT
   useEffect(() => {
     const userFromToken = getUser();
     setUser(userFromToken);
@@ -38,11 +57,12 @@ function App() {
   }, []);
 
   if (loadingUser) {
-    return <p style={{ textAlign: "center", marginTop: "50px" }}>Chargement...</p>;
+    return (
+      <p style={{ textAlign: "center", marginTop: "50px" }}>
+        Chargement...
+      </p>
+    );
   }
-
-  // 🔥 Helper roles
-  const hasRole = (role) => user?.roles?.includes(role);
 
   return (
     <SocketProvider user={user}>
@@ -51,82 +71,120 @@ function App() {
 
         <Routes>
 
-          {/* ================= ROOT ================= */}
+          {/* ROOT */}
           <Route path="/" element={<Navigate to="/dashboard" replace />} />
 
-          {/* ================= PUBLIC ================= */}
+          {/* PUBLIC */}
           <Route path="/login" element={<Login setUser={setUser} />} />
           <Route path="/register" element={<Register />} />
 
-          {/* ================= PROTECTED ================= */}
+          {/* PROTECTED */}
           <Route
             path="/dashboard"
-            element={user ? <Dashboard user={user} /> : <Navigate to="/login" />}
+            element={
+              <ProtectedRoute user={user}>
+                <Dashboard user={user} />
+              </ProtectedRoute>
+            }
           />
 
           <Route
             path="/trips"
-            element={user ? <TripList user={user} /> : <Navigate to="/login" />}
+            element={
+              <ProtectedRoute user={user}>
+                <TripList user={user} />
+              </ProtectedRoute>
+            }
           />
 
           <Route
             path="/trip/:id"
-            element={user ? <TripDetails user={user} /> : <Navigate to="/login" />}
+            element={
+              <ProtectedRoute user={user}>
+                <TripDetails user={user} />
+              </ProtectedRoute>
+            }
           />
 
           <Route
             path="/trip/:id/reserve"
-            element={user ? <TripReservation user={user} /> : <Navigate to="/login" />}
+            element={
+              <ProtectedRoute user={user}>
+                <TripReservation user={user} />
+              </ProtectedRoute>
+            }
           />
 
           <Route
             path="/profile"
-            element={user ? <Profile user={user} /> : <Navigate to="/login" />}
+            element={
+              <ProtectedRoute user={user}>
+                <Profile user={user} />
+              </ProtectedRoute>
+            }
           />
 
           <Route
             path="/messagerie"
-            element={user ? <RealtimeChat user={user} /> : <Navigate to="/login" />}
+            element={
+              <ProtectedRoute user={user}>
+                <RealtimeChat user={user} />
+              </ProtectedRoute>
+            }
           />
 
           <Route
             path="/publish"
-            element={user ? <TripForm user={user} /> : <Navigate to="/login" />}
+            element={
+              <ProtectedRoute user={user}>
+                <TripForm user={user} />
+              </ProtectedRoute>
+            }
           />
 
           <Route
             path="/search"
-            element={user ? <TripSearch user={user} /> : <Navigate to="/login" />}
+            element={
+              <ProtectedRoute user={user}>
+                <TripSearch user={user} />
+              </ProtectedRoute>
+            }
           />
 
-          {/* ================= PASSENGER ================= */}
+          {/* PASSENGER */}
           <Route
             path="/my-reservations"
             element={
-              user && hasRole("passenger") ? (
+              <RoleRoute user={user} role="passenger">
                 <MyReservations user={user} />
-              ) : (
-                <Navigate to="/login" />
-              )
+              </RoleRoute>
             }
           />
 
-          {/* ================= DRIVER ================= */}
+          {/* DRIVER */}
           <Route
             path="/trip/driver/reservations-driver"
             element={
-              user && hasRole("driver") ? (
+              <RoleRoute user={user} role="driver">
                 <TripReservationsDriver user={user} />
-              ) : (
-                <Navigate to="/login" />
-              )
+              </RoleRoute>
             }
           />
 
-          {/* ================= FALLBACK ================= */}
+          {/* 🔥 PAGES LÉGALES */}
+            <Route path="/mentions-legales" element={<MentionsLegales />} />
+            <Route path="/privacy" element={<Privacy />} />
+            <Route path="/terms" element={<Terms />} />
+            <Route path="/cookies" element={<Cookies />} />
+
+          {/* FALLBACK */}
           <Route path="*" element={<Navigate to="/dashboard" />} />
 
         </Routes>
+          <CookieBanner />
+        {/* FOOTER */}
+        <Footer />
+
       </Router>
     </SocketProvider>
   );
