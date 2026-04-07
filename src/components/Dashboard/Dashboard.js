@@ -1,29 +1,20 @@
 import React, { useState } from "react";
-import SearchBar from "../SearchBar/SearchBar";
+import { Box, Container, Grid } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 
-// MUI
-import {
-  Box,
-  Typography,
-  Container,
-  Grid,
-  Card,
-  CardContent,
-  Button,
-  Stack,
-} from "@mui/material";
+// Components
+import DashboardHero from "./DashboardHero";
+import DashboardCard from "./DashboardCard";
 
 // Icons
 import DirectionsCarIcon from "@mui/icons-material/DirectionsCar";
 import SearchIcon from "@mui/icons-material/Search";
-import SavingsIcon from "@mui/icons-material/Savings";
 import HistoryIcon from "@mui/icons-material/History";
 import ChatIcon from "@mui/icons-material/Chat";
 import StarIcon from "@mui/icons-material/Star";
+import SavingsIcon from "@mui/icons-material/Savings";
 
-// Animation
-import { motion } from "framer-motion";
+import "./dashboard.css";
 
 const Dashboard = () => {
   const navigate = useNavigate();
@@ -41,196 +32,114 @@ const Dashboard = () => {
     passengers: 1,
   });
 
-  const cardVariants = {
-    hidden: { opacity: 0, y: 40 },
-    visible: (delay = 0) => ({
-      opacity: 1,
-      y: 0,
-      transition: { duration: 0.6, delay },
-    }),
-  };
-
   return (
     <Box>
 
       {/* HERO */}
-      <Box
-        sx={{
-          minHeight: 350,
-          backgroundImage: `linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url("/hero.png")`,
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
-          justifyContent: "center",
-          color: "white",
-          textAlign: "center",
-          px: 2,
-        }}
-      >
-        <Typography variant="h3" fontWeight="bold">
-          {isVisitor && "Bienvenue 👋"}
-          {isPassenger && "Trouvez votre trajet 🚀"}
-          {isDriver && "Gérez vos trajets 🚗"}
-        </Typography>
+      <DashboardHero
+        isDriver={isDriver}
+        isPassenger={isPassenger}
+        isVisitor={isVisitor}
+        filters={filters}
+        setFilters={setFilters}
+      />
 
-        <Typography variant="h6" sx={{ mb: 3 }}>
-          {isVisitor && "Connectez-vous pour commencer"}
-          {isPassenger && "Voyagez facilement partout"}
-          {isDriver && "Publiez et gérez vos trajets"}
-        </Typography>
-
-        {/* SEARCH visible pour tous */}
-        <Box
-          sx={{
-            mt: 2,
-            width: "100%",
-            maxWidth: 800,
-            p: 2,
-            borderRadius: 4,
-            backdropFilter: "blur(12px)",
-            background: "rgba(255,255,255,0.2)",
-          }}
-        >
-          <SearchBar filters={filters} setFilters={setFilters} />
-        </Box>
-      </Box>
-
-      {/* FEATURES */}
+      {/* CONTENT */}
       <Container sx={{ py: 6 }}>
         <Grid container spacing={4} justifyContent="center">
 
-          {/* 🚗 CONDUCTEUR */}
+          {/* DRIVER */}
           {isDriver && (
             <>
               <Grid item xs={12} sm={6} md={4}>
-                <motion.div variants={cardVariants} initial="hidden" whileInView="visible">
-                  <Card sx={{ textAlign: "center", p: 3 }}>
-                    <DirectionsCarIcon sx={{ fontSize: 45, color: "#2e9e53" }} />
-                    <Typography variant="h6" mt={2}>
-                      Publier un trajet
-                    </Typography>
-                    <Button sx={{ mt: 2 }} onClick={() => navigate("/publish")}>
-                      Publier
-                    </Button>
-                  </Card>
-                </motion.div>
+                <DashboardCard
+                  icon={<DirectionsCarIcon sx={{ fontSize: 45, color: "#2e9e53" }} />}
+                  title="Publier un trajet"
+                  buttonText="Publier"
+                  onClick={() => navigate("/publish")}
+                />
               </Grid>
 
               <Grid item xs={12} sm={6} md={4}>
-                <motion.div variants={cardVariants} initial="hidden" whileInView="visible">
-                  <Card sx={{ textAlign: "center", p: 3 }}>
-                    <HistoryIcon sx={{ fontSize: 45, color: "#2e9e53" }} />
-                    <Typography variant="h6" mt={2}>
-                      Mes trajets
-                    </Typography>
-                    <Button sx={{ mt: 2 }} onClick={() => navigate("/my-trips")}>
-                      Voir
-                    </Button>
-                  </Card>
-                </motion.div>
+                <DashboardCard
+                  icon={<HistoryIcon sx={{ fontSize: 45, color: "#2e9e53" }} />}
+                  title="Mes trajets"
+                  buttonText="Voir"
+                  onClick={() => navigate("/my-trips")}
+                />
               </Grid>
 
               <Grid item xs={12} sm={6} md={4}>
-                <motion.div variants={cardVariants} initial="hidden" whileInView="visible">
-                  <Card sx={{ textAlign: "center", p: 3 }}>
-                    <StarIcon sx={{ fontSize: 45, color: "#2e9e53" }} />
-                    <Typography variant="h6" mt={2}>
-                      Mes avis
-                    </Typography>
-                    <Button sx={{ mt: 2 }} onClick={() => navigate("/my-reviews")}>
-                      Voir
-                    </Button>
-                  </Card>
-                </motion.div>
+                <DashboardCard
+                  icon={<StarIcon sx={{ fontSize: 45, color: "#2e9e53" }} />}
+                  title="Mes avis"
+                  buttonText="Voir"
+                  onClick={() => navigate("/my-reviews")}
+                />
               </Grid>
             </>
           )}
 
-          {/* 🧍 PASSAGER */}
+          {/* PASSENGER */}
           {isPassenger && (
             <>
               <Grid item xs={12} sm={6} md={4}>
-                <motion.div variants={cardVariants} initial="hidden" whileInView="visible">
-                  <Card sx={{ textAlign: "center", p: 3 }}>
-                    <SearchIcon sx={{ fontSize: 45, color: "#2e9e53" }} />
-                    <Typography variant="h6" mt={2}>
-                      Rechercher un trajet
-                    </Typography>
-                    <Button sx={{ mt: 2 }} onClick={() => navigate("/search")}>
-                      Chercher
-                    </Button>
-                  </Card>
-                </motion.div>
+                <DashboardCard
+                  icon={<SearchIcon sx={{ fontSize: 45, color: "#2e9e53" }} />}
+                  title="Rechercher un trajet"
+                  buttonText="Chercher"
+                  onClick={() => navigate("/search")}
+                />
               </Grid>
 
               <Grid item xs={12} sm={6} md={4}>
-                <motion.div variants={cardVariants} initial="hidden" whileInView="visible">
-                  <Card sx={{ textAlign: "center", p: 3 }}>
-                    <HistoryIcon sx={{ fontSize: 45, color: "#2e9e53" }} />
-                    <Typography variant="h6" mt={2}>
-                      Mes réservations
-                    </Typography>
-                    <Button sx={{ mt: 2 }} onClick={() => navigate("/my-reservations")}>
-                      Voir
-                    </Button>
-                  </Card>
-                </motion.div>
+                <DashboardCard
+                  icon={<HistoryIcon sx={{ fontSize: 45, color: "#2e9e53" }} />}
+                  title="Mes réservations"
+                  buttonText="Voir"
+                  onClick={() => navigate("/my-reservations")}
+                />
               </Grid>
 
               <Grid item xs={12} sm={6} md={4}>
-                <motion.div variants={cardVariants} initial="hidden" whileInView="visible">
-                  <Card sx={{ textAlign: "center", p: 3 }}>
-                    <ChatIcon sx={{ fontSize: 45, color: "#2e9e53" }} />
-                    <Typography variant="h6" mt={2}>
-                      Messages
-                    </Typography>
-                    <Button sx={{ mt: 2 }} onClick={() => navigate("/messages")}>
-                      Ouvrir
-                    </Button>
-                  </Card>
-                </motion.div>
+                <DashboardCard
+                  icon={<ChatIcon sx={{ fontSize: 45, color: "#2e9e53" }} />}
+                  title="Messages"
+                  buttonText="Ouvrir"
+                  onClick={() => navigate("/messages")}
+                />
               </Grid>
             </>
           )}
 
-          {/* 👤 VISITEUR */}
+          {/* VISITOR */}
           {isVisitor && (
             <>
               <Grid item xs={12} sm={6} md={4}>
-                <Card sx={{ textAlign: "center", p: 3 }}>
-                  <Typography variant="h6">Créer un compte</Typography>
-                  <Button sx={{ mt: 2 }} onClick={() => navigate("/register")}>
-                    S'inscrire
-                  </Button>
-                </Card>
+                <DashboardCard
+                  title="Créer un compte"
+                  buttonText="S'inscrire"
+                  onClick={() => navigate("/register")}
+                />
               </Grid>
 
               <Grid item xs={12} sm={6} md={4}>
-                <Card sx={{ textAlign: "center", p: 3 }}>
-                  <Typography variant="h6">Se connecter</Typography>
-                  <Button sx={{ mt: 2 }} onClick={() => navigate("/login")}>
-                    Connexion
-                  </Button>
-                </Card>
+                <DashboardCard
+                  title="Se connecter"
+                  buttonText="Connexion"
+                  onClick={() => navigate("/login")}
+                />
               </Grid>
             </>
           )}
 
-          {/* COMMUN */}
+          {/* COMMON */}
           <Grid item xs={12} sm={6} md={4}>
-            <motion.div variants={cardVariants} initial="hidden" whileInView="visible">
-              <Card sx={{ textAlign: "center", p: 3 }}>
-                <SavingsIcon sx={{ fontSize: 45, color: "#2e9e53" }} />
-                <Typography variant="h6" mt={2}>
-                  Économisez
-                </Typography>
-                <Typography color="text.secondary">
-                  Voyage moins cher et écologique
-                </Typography>
-              </Card>
-            </motion.div>
+            <DashboardCard
+              icon={<SavingsIcon sx={{ fontSize: 45, color: "#2e9e53" }} />}
+              title="Économisez"
+              description="Voyage moins cher et écologique"
+            />
           </Grid>
 
         </Grid>

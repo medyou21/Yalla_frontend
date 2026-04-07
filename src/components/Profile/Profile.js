@@ -15,6 +15,8 @@ import {
   Snackbar,
 } from "@mui/material";
 
+import "../../styles/profile.css";
+
 const Profile = () => {
   const currentUser = getUser();
   const navigate = useNavigate();
@@ -93,7 +95,6 @@ const Profile = () => {
 
   const updateProfile = async (e) => {
     e.preventDefault();
-
     setLoading(true);
 
     try {
@@ -119,8 +120,9 @@ const Profile = () => {
   };
 
   return (
-    <Box sx={{ maxWidth: 550, mx: "auto", mt: 4, p: 3, boxShadow: 3,backgroundColor: "background.paper", }}>
-      <Typography variant="h5" mb={3} textAlign="center">
+    <Box className="profileContainer">
+
+      <Typography variant="h5" className="profileTitle">
         Mon profil
       </Typography>
 
@@ -128,6 +130,7 @@ const Profile = () => {
 
       <form onSubmit={updateProfile}>
         <Stack spacing={2}>
+
           <TextField
             label="Nom"
             value={form.name}
@@ -136,11 +139,14 @@ const Profile = () => {
             }
             fullWidth
             required
-            
-
           />
 
-          <TextField label="Email" value={form.email} disabled fullWidth />
+          <TextField
+            label="Email"
+            value={form.email}
+            disabled
+            fullWidth
+          />
 
           <TextField
             label="Téléphone"
@@ -152,8 +158,11 @@ const Profile = () => {
             required
           />
 
-          <Box>
-            <Typography variant="subtitle1" >Rôles</Typography>
+          {/* ROLES */}
+          <Box className="rolesBox">
+            <Typography className="rolesTitle">
+              Rôles
+            </Typography>
 
             <FormControlLabel
               control={
@@ -162,12 +171,7 @@ const Profile = () => {
                   onChange={(e) =>
                     handleRoleChange("driver", e.target.checked)
                   }
-                  sx={{
-  
-  "&.Mui-checked": {
-    color: "#2e9e53",
-  },
-}}
+                  className="checkboxCustom"
                 />
               }
               label="Conducteur"
@@ -175,32 +179,27 @@ const Profile = () => {
 
             <FormControlLabel
               control={
-                <Checkbox 
+                <Checkbox
                   checked={form.roles.includes("passenger")}
                   onChange={(e) =>
                     handleRoleChange("passenger", e.target.checked)
                   }
-                  sx={{
- 
-  "&.Mui-checked": {
-    color: "#2e9e53",
-  },
-}}
+                  className="checkboxCustom"
                 />
               }
               label="Passager"
             />
           </Box>
 
-          <Button type="submit" variant="contained" disabled={loading}
-            sx={{
-              backgroundColor: "#2e9e53",
-              "&:hover": { backgroundColor: "#248244" },
-              py: 1.5,
-            }}
+          <Button
+            type="submit"
+            variant="contained"
+            disabled={loading}
+            className="saveBtn"
           >
             {loading ? "Mise à jour..." : "Sauvegarder"}
           </Button>
+
         </Stack>
       </form>
 
@@ -213,6 +212,7 @@ const Profile = () => {
           {snackbar.message}
         </Alert>
       </Snackbar>
+
     </Box>
   );
 };

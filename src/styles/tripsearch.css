@@ -1,308 +1,132 @@
-/* ----------------------------
-   PAGE
----------------------------- */
+/* ============================
+   VARIABLES (pro 🔥)
+============================ */
+:root{
+  --primary:#2e7d32;
+  --primary-dark:#256628;
+  --bg:#f5f6fa;
+  --card:#ffffff;
+  --text:#333;
+  --text-light:#777;
+  --border:#e6e6e6;
+}
 
+/* ============================
+   PAGE
+============================ */
 .tripsearch-page{
-    max-width:1100px;
-    margin:auto;
-    padding:25px;
-    background:#f5f6fa;
-    font-family:'Roboto', Arial, sans-serif;
+  max-width:1100px;
+  margin:auto;
+  padding:30px 20px;
+  background:var(--bg);
+  font-family:'Roboto', Arial, sans-serif;
 }
 
 .tripsearch-page h2{
-    margin-bottom:18px;
-    font-size:24px;
-    font-weight:600;
-    color:#333;
+  margin-bottom:20px;
+  font-size:26px;
+  font-weight:600;
+  color:var(--text);
 }
 
-
-/* ----------------------------
-   BARRE RECHERCHE
----------------------------- */
-
+/* ============================
+   SEARCH BAR
+============================ */
 .search-bar-blabla{
-    display:flex;
-    align-items:center;
-    gap:12px;
-    flex-wrap:wrap;
-    background:#ffffff;
-    padding:16px;
-    border-radius:12px;
-    box-shadow:0 3px 10px rgba(0,0,0,0.06);
-    margin-bottom:22px;
+  display:flex;
+  align-items:center;
+  gap:12px;
+  flex-wrap:wrap;
+  background:var(--card);
+  padding:18px;
+  border-radius:14px;
+  box-shadow:0 4px 18px rgba(0,0,0,0.05);
+  margin-bottom:25px;
+  transition:0.2s;
+}
+
+.search-bar-blabla:hover{
+  box-shadow:0 6px 22px rgba(0,0,0,0.08);
 }
 
 .search-field{
-    display:flex;
-    align-items:center;
-    gap:6px;
-    flex:1;
+  flex:1;
+  min-width:150px;
 }
 
 .search-field input,
 .search-field select{
-    width:100%;
-    border:1px solid #ddd;
-    padding:10px 12px;
-    border-radius:8px;
-    font-size:14px;
-    background:#fafafa;
-    transition:0.2s;
+  width:100%;
+  border:1px solid #ddd;
+  padding:11px 14px;
+  border-radius:10px;
+  font-size:14px;
+  background:#fafafa;
+  transition:all 0.2s ease;
 }
 
 .search-field input:focus,
 .search-field select:focus{
-    border-color:#2e7d32;
-    background:#fff;
-    outline:none;
+  border-color:var(--primary);
+  background:#fff;
+  outline:none;
+  box-shadow:0 0 0 2px rgba(46,125,50,0.15);
 }
 
 .btn-search{
-    background:#2e7d32;
-    border:none;
-    color:white;
-    padding:11px 22px;
-    border-radius:8px;
-    cursor:pointer;
-    font-weight:500;
-    font-size:14px;
-    transition:0.2s;
+  background:linear-gradient(135deg, var(--primary), var(--primary-dark));
+  border:none;
+  color:white;
+  padding:12px 24px;
+  border-radius:10px;
+  cursor:pointer;
+  font-weight:500;
+  font-size:14px;
+  transition:all 0.25s ease;
 }
 
 .btn-search:hover{
-    background:#256628;
+  transform:translateY(-1px);
+  box-shadow:0 4px 12px rgba(46,125,50,0.3);
 }
 
-
-/* ----------------------------
+/* ============================
    TRI
----------------------------- */
-
+============================ */
 .trip-sort{
-    margin-bottom:18px;
-    font-size:14px;
-    color:#444;
+  margin-bottom:20px;
+  font-size:14px;
+  color:#444;
 }
 
-.trip-sort select{
-    margin-left:10px;
-    padding:7px 10px;
-    border-radius:6px;
-    border:1px solid #ddd;
-}
-
-
-/* ----------------------------
-   LISTE TRAJETS
----------------------------- */
-
-.trip-list{
-    display:flex;
-    flex-direction:column;
-    gap:14px;
-}
-
-
-/* ----------------------------
+/* ============================
    CARD TRAJET
----------------------------- */
-
-.trip-card{
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    background:#ffffff;
-    padding:18px;
-    border-radius:12px;
-    border:1px solid #e6e6e6;
-    transition:all 0.25s ease;
-}
-
-.trip-card:hover{
-    transform:translateY(-3px);
-    box-shadow:0 8px 20px rgba(0,0,0,0.08);
-}
-
-
-/* ----------------------------
-   DRIVER
----------------------------- */
-
-.driver{
-    display:flex;
-    align-items:center;
-    gap:12px;
-    width:220px;
-}
-
-.driver img{
-    width:52px;
-    height:52px;
-    border-radius:50%;
-    object-fit:cover;
-}
-
-.driver strong{
-    display:block;
-    font-size:15px;
-}
-
-.driver-car{
-    font-size:13px;
-    color:#777;
-}
-
-.driver-rating{
-    color:#f5a623;
-    font-size:14px;
-}
-
-
-/* ----------------------------
-   ROUTE
----------------------------- */
-
-.route{
-    flex:1;
-    display:flex;
-    align-items:center;
-    gap:22px;
-}
-
-.time{
-    font-weight:600;
-    font-size:16px;
-    color:#333;
-}
-
-.cities{
-    display:flex;
-    flex-direction:column;
-    font-size:14px;
-}
-
-.line{
-    height:40px;
-    width:2px;
-    background:#ddd;
-    margin:3px 0;
-}
-
-.trip-info{
-    font-size:13px;
-    color:#666;
-}
-
-
-/* ----------------------------
-   PRIX
----------------------------- */
-
-.price{
-    text-align:right;
-    min-width:130px;
-}
-
-.price strong{
-    display:block;
-    font-size:18px;
-    margin-bottom:6px;
-    color:#2e7d32;
-}
-
-.btn-book{
-    background:#2e7d32;
-    color:white;
-    padding:8px 16px;
-    border-radius:7px;
-    text-decoration:none;
-    font-size:14px;
-    font-weight:500;
-    transition:0.2s;
-}
-
-.btn-book:hover{
-    background:#256628;
-}
-
-
-/* ----------------------------
-   MAP
----------------------------- */
-
-.map-container{
-    margin-top:28px;
-    border-radius:12px;
-    overflow:hidden;
-    box-shadow:0 4px 14px rgba(0,0,0,0.08);
-}
-
-
-/* ----------------------------
-   RESPONSIVE
----------------------------- */
-
-@media (max-width:768px){
-
-.search-bar-blabla{
-flex-direction:column;
-align-items:stretch;
-}
-
-.route{
-flex-direction:column;
-align-items:flex-start;
-gap:10px;
-}
-
-.trip-card{
-flex-direction:column;
-align-items:flex-start;
-gap:15px;
-}
-
-.price{
-width:100%;
-display:flex;
-justify-content:space-between;
-align-items:center;
-}
-
-.driver{
-width:100%;
-}
-
-}
-/* ----------------------------
-   CARD TRAJET AVEC TIMELINE
----------------------------- */
-
+============================ */
 .trip-card{
   display:flex;
   align-items:center;
   justify-content:space-between;
-  background:#ffffff;
-  padding:18px 20px;
-  border-radius:14px;
-  border:1px solid #e6e6e6;
+  background:var(--card);
+  padding:20px;
+  border-radius:16px;
+  border:1px solid var(--border);
   transition:all 0.25s ease;
-  flex-wrap:wrap;
+  margin-bottom:14px;
 }
 
 .trip-card:hover{
-  transform:translateY(-3px);
-  box-shadow:0 8px 20px rgba(0,0,0,0.08);
+  transform:translateY(-4px);
+  box-shadow:0 10px 28px rgba(0,0,0,0.08);
 }
 
-/* DRIVER */
+/* ============================
+   DRIVER
+============================ */
 .driver{
   display:flex;
   align-items:center;
   gap:12px;
   width:220px;
-  flex-shrink:0;
 }
 
 .driver img{
@@ -313,27 +137,28 @@ width:100%;
 }
 
 .driver strong{
-  display:block;
   font-size:15px;
+  color:var(--text);
 }
 
 .driver-car{
   font-size:13px;
-  color:#777;
+  color:var(--text-light);
 }
 
 .driver-rating{
   color:#f5a623;
-  font-size:14px;
+  font-size:13px;
 }
 
-/* ROUTE AVEC TIMELINE */
+/* ============================
+   ROUTE (TIMELINE MODERNE)
+============================ */
 .route{
   flex:1;
   display:flex;
   align-items:center;
   gap:20px;
-  position:relative;
 }
 
 .cities{
@@ -341,7 +166,6 @@ width:100%;
   flex-direction:column;
   font-size:14px;
   min-width:100px;
-  position:relative;
 }
 
 .line{
@@ -350,16 +174,28 @@ width:100%;
   background:#ddd;
   position:relative;
   border-radius:2px;
-  margin:12px 0;
+  margin:10px 0;
+  overflow:hidden;
 }
 
+/* animation + gradient 🔥 */
 .line::before{
   content:"🚗";
   position:absolute;
-  left:0;
   top:-12px;
   font-size:16px;
-  animation: drive 3s linear infinite;
+  animation: drive 4s ease-in-out infinite;
+}
+
+.line::after{
+  content:"";
+  position:absolute;
+  top:0;
+  left:0;
+  height:100%;
+  width:100%;
+  background:linear-gradient(90deg, transparent, rgba(46,125,50,0.3), transparent);
+  animation: glow 3s infinite;
 }
 
 @keyframes drive {
@@ -368,53 +204,70 @@ width:100%;
   100% { left:0; }
 }
 
-.time{
-  font-weight:600;
-  font-size:16px;
-  color:#333;
-  min-width:50px;
+@keyframes glow {
+  0% { transform:translateX(-100%); }
+  100% { transform:translateX(100%); }
 }
 
 .trip-info{
   font-size:13px;
   color:#666;
-  min-width:70px;
-  text-align:left;
+  min-width:90px;
 }
 
-/* PRIX & BOUTON */
+/* ============================
+   PRICE
+============================ */
 .price{
   text-align:right;
-  min-width:130px;
+  min-width:140px;
   display:flex;
   flex-direction:column;
   align-items:flex-end;
 }
 
 .price strong{
-  display:block;
-  font-size:18px;
+  font-size:20px;
+  color:var(--primary);
   margin-bottom:6px;
-  color:#2e7d32;
 }
 
 .btn-book{
-  background:#2e7d32;
+  background:var(--primary);
   color:white;
-  padding:8px 16px;
-  border-radius:7px;
+  padding:9px 18px;
+  border-radius:8px;
   text-decoration:none;
   font-size:14px;
   font-weight:500;
-  transition:0.2s;
+  transition:0.25s;
 }
 
 .btn-book:hover{
-  background:#256628;
+  background:var(--primary-dark);
+  transform:scale(1.05);
 }
 
-/* RESPONSIVE */
+/* ============================
+   MAP
+============================ */
+.map-container{
+  margin-top:30px;
+  border-radius:16px;
+  overflow:hidden;
+  box-shadow:0 6px 20px rgba(0,0,0,0.1);
+}
+
+/* ============================
+   RESPONSIVE
+============================ */
 @media (max-width:768px){
+
+  .search-bar-blabla{
+    flex-direction:column;
+    align-items:stretch;
+  }
+
   .trip-card{
     flex-direction:column;
     align-items:flex-start;
@@ -424,7 +277,6 @@ width:100%;
   .route{
     flex-direction:column;
     align-items:flex-start;
-    gap:10px;
     width:100%;
   }
 
@@ -432,5 +284,63 @@ width:100%;
     width:100%;
     flex-direction:row;
     justify-content:space-between;
+    align-items:center;
   }
+
+  .driver{
+    width:100%;
+  }
+}
+/* ============================
+   CARD CLIQUABLE
+============================ */
+.clickable-card{
+  text-decoration:none;
+  color:inherit;
+  cursor:pointer;
+  position:relative;
+}
+
+.clickable-card:hover{
+  transform:translateY(-5px) scale(1.01);
+  box-shadow:0 12px 30px rgba(0,0,0,0.1);
+}
+
+/* effet clic */
+.clickable-card::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  border-radius:16px;
+  background:rgba(0,0,0,0.04);
+  opacity:0;
+  transition:0.2s;
+}
+
+.clickable-card:active::after{
+  opacity:1;
+}
+
+/* CARD DISABLED */
+.disabled-card{
+  opacity:0.6;
+  cursor:not-allowed;
+}
+
+/* BADGE COMPLET */
+.full-badge{
+  color:red;
+  font-weight:600;
+  font-size:14px;
+}
+
+/* effet hover info */
+.clickable-card:hover::before{
+  content:"Voir détails →";
+  position:absolute;
+  right:20px;
+  top:15px;
+  font-size:12px;
+  color:#2e7d32;
+  font-weight:500;
 }

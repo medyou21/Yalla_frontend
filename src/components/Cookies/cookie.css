@@ -1,0 +1,51 @@
+/* ============================
+   COOKIE BANNER
+============================ */
+.cookie-banner{
+  position:fixed;
+  bottom:0;
+  left:0;
+  width:100%;
+  background:#1e1e1e;
+  color:white;
+  padding:15px 20px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  z-index:9999;
+  flex-wrap:wrap;
+  gap:10px;
+}
+
+.cookie-text{
+  font-size:14px;
+  color:#ccc;
+}
+
+/* BUTTONS */
+.cookie-actions{
+  display:flex;
+  gap:10px;
+}
+
+.accept-btn{
+  background:#2e9e53 !important;
+}
+
+.refuse-btn{
+  border-color:#999 !important;
+  color:#ccc !important;
+}
+
+.refuse-btn:hover{
+  border-color:#fff !important;
+  color:#fff !important;
+}
+
+/* MOBILE */
+@media (max-width:600px){
+  .cookie-banner{
+    flex-direction:column;
+    text-align:center;
+  }
+}

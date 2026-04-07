@@ -14,10 +14,14 @@ import {
   Menu,
   MenuItem,
   Box,
-  Avatar
+  Avatar,
+  Divider
 } from "@mui/material";
 
 import MenuIcon from "@mui/icons-material/Menu";
+
+// CSS (utilisé seulement pour animation / petits styles)
+import "../../styles/navbar.css";
 
 const Navbar = ({ user, setUser, resetNotifications }) => {
   const navigate = useNavigate();
@@ -33,7 +37,7 @@ const Navbar = ({ user, setUser, resetNotifications }) => {
   useEffect(() => {
     const socket = socketRef?.current;
 
-    if (!socket || typeof socket.on !== "function" || !isDriver) return;
+    if (!socket || !isDriver) return;
 
     const handleNewReservation = () => {
       setNewReservations((prev) => prev + 1);
@@ -44,7 +48,7 @@ const Navbar = ({ user, setUser, resetNotifications }) => {
     return () => {
       socket.off("newReservation", handleNewReservation);
     };
-  }, [isDriver, socketRef?.current]); // 🔥 important
+  }, [isDriver, socketRef?.current]);
 
   // ================= MENU =================
   const handleMenuOpen = (event) => setAnchorEl(event.currentTarget);
@@ -70,149 +74,99 @@ const Navbar = ({ user, setUser, resetNotifications }) => {
     navigate("/login");
   };
 
-  // ================= DESKTOP =================
-  const renderDesktopMenu = () => {
-    if (!user) {
-      return (
-        <Button component={RouterLink} to="/login" variant="outlined">
-          S'inscrire / Se connecter
-        </Button>
-      );
-    }
-
-    return (
-      <>
-        <Box display="flex" alignItems="center" gap={1}>
-          <Avatar sx={{ width: 32, height: 32 }}>
-            {user?.name?.charAt(0)?.toUpperCase()}
-          </Avatar>
-
-          <Typography sx={{ color: "#2e9e53" }}>
-            {user?.name}
-          </Typography>
-        </Box>
-
-        <Button component={RouterLink} to="/search">Rechercher</Button>
-        <Button component={RouterLink} to="/publish">Publier</Button>
-        <Button component={RouterLink} to="/messagerie">Messagerie</Button>
-        <Button component={RouterLink} to="/profile">Profil</Button>
-
-        {isPassenger && (
-          <Button component={RouterLink} to="/my-reservations">
-            Mes réservations
-          </Button>
-        )}
-
-        {isDriver && (
-          <Button
-            component={RouterLink}
-            to="/trip/driver/reservations-driver"
-            onClick={handleDriverClick}
-          >
-            <Badge badgeContent={newReservations} color="error">
-              Réservations
-            </Badge>
-          </Button>
-        )}
-
-        <Button color="error" onClick={logout}>
-          Déconnexion
-        </Button>
-      </>
-    );
-  };
-
-  // ================= MOBILE =================
-  const renderMobileMenu = () => {
-    if (!user) {
-      return (
-        <MenuItem
-          component={RouterLink}
-          to="/login"
-          onClick={handleMenuClose}
-        >
-          Login
-        </MenuItem>
-      );
-    }
-
-    return (
-      <>
-        <MenuItem disabled>
-          Bonjour, {user?.name}
-        </MenuItem>
-
-        <MenuItem component={RouterLink} to="/search" onClick={handleMenuClose}>
-          Rechercher
-        </MenuItem>
-
-        <MenuItem component={RouterLink} to="/publish" onClick={handleMenuClose}>
-          Publier
-        </MenuItem>
-
-        <MenuItem component={RouterLink} to="/messagerie" onClick={handleMenuClose}>
-          Messagerie
-        </MenuItem>
-
-        <MenuItem component={RouterLink} to="/profile" onClick={handleMenuClose}>
-          Profil
-        </MenuItem>
-
-        {isPassenger && (
-          <MenuItem
-            component={RouterLink}
-            to="/my-reservations"
-            onClick={handleMenuClose}
-          >
-            Mes réservations
-          </MenuItem>
-        )}
-
-        {isDriver && (
-          <MenuItem
-            component={RouterLink}
-            to="/trip/driver/reservations-driver"
-            onClick={handleDriverClick}
-          >
-            <Badge badgeContent={newReservations} color="error">
-              Réservations
-            </Badge>
-          </MenuItem>
-        )}
-
-        <MenuItem onClick={logout} sx={{ color: "red" }}>
-          Déconnexion
-        </MenuItem>
-      </>
-    );
+  // ================= STYLE MUI =================
+  const linkStyle = {
+    textDecoration: "none",
+    color: "#333",
+    fontWeight: 500,
+    "&:hover": {
+      color: "#2e9e53",
+    },
   };
 
   return (
-    <AppBar position="static" color="default" elevation={2}>
-      <Toolbar sx={{ display: "flex", justifyContent: "space-between" }}>
+    <AppBar position="static" sx={{ backgroundColor: "#fff", color: "#333" }}>
+      <Toolbar className="navbar">
 
         {/* LOGO */}
         <Typography
-          variant="h6"
           component={RouterLink}
           to="/"
-          sx={{ textDecoration: "none", color: "#333", fontWeight: "bold" }}
+          className="logo"
+          sx={{ textDecoration: "none" }}
         >
-          🚗 Yalla<span style={{ color: "#2e9e53" }}>Ride</span>
+          🚗 Yalla
+          <span>Ride</span>
         </Typography>
 
-        {/* DESKTOP */}
-        <Box
-          sx={{
-            display: { xs: "none", md: "flex" },
-            gap: 2,
-            alignItems: "center"
-          }}
-        >
-          {renderDesktopMenu()}
+        {/* DESKTOP MENU */}
+        <Box className="navbar-right" sx={{ display: { xs: "none", md: "flex" } }}>
+
+          {!user ? (
+            <Button
+              component={RouterLink}
+              to="/login"
+              variant="outlined"
+              className="login-btn"
+            >
+              S'inscrire / Se connecter
+            </Button>
+          ) : (
+            <>
+              {/* USER INFO */}
+              <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
+                <Avatar sx={{ width: 32, height: 32 }}>
+                  {user?.name?.charAt(0)?.toUpperCase()}
+                </Avatar>
+
+                <Typography className="username">
+                  {user?.name}
+                </Typography>
+              </Box>
+
+              <Button component={RouterLink} to="/search" sx={linkStyle}>
+                Rechercher
+              </Button>
+
+              <Button component={RouterLink} to="/publish" sx={linkStyle}>
+                Publier
+              </Button>
+
+              <Button component={RouterLink} to="/messagerie" sx={linkStyle}>
+                Messagerie
+              </Button>
+
+              <Button component={RouterLink} to="/profile" sx={linkStyle}>
+                Profil
+              </Button>
+
+              {isPassenger && (
+                <Button component={RouterLink} to="/my-reservations" sx={linkStyle}>
+                  Mes réservations
+                </Button>
+              )}
+
+              {isDriver && (
+                <Button
+                  component={RouterLink}
+                  to="/trip/driver/reservations-driver"
+                  onClick={handleDriverClick}
+                  sx={linkStyle}
+                >
+                  <Badge badgeContent={newReservations} color="error">
+                    Réservations
+                  </Badge>
+                </Button>
+              )}
+
+              <Button color="error" onClick={logout}>
+                Déconnexion
+              </Button>
+            </>
+          )}
         </Box>
 
-        {/* MOBILE */}
+        {/* MOBILE MENU */}
         <Box sx={{ display: { xs: "flex", md: "none" } }}>
           <IconButton onClick={handleMenuOpen}>
             <MenuIcon />
@@ -223,7 +177,61 @@ const Navbar = ({ user, setUser, resetNotifications }) => {
             open={Boolean(anchorEl)}
             onClose={handleMenuClose}
           >
-            {renderMobileMenu()}
+            {!user ? (
+              <MenuItem
+                component={RouterLink}
+                to="/login"
+                onClick={handleMenuClose}
+              >
+                Login
+              </MenuItem>
+            ) : (
+              <>
+                <MenuItem disabled>Bonjour, {user?.name}</MenuItem>
+
+                <Divider />
+
+                <MenuItem component={RouterLink} to="/search" onClick={handleMenuClose}>
+                  Rechercher
+                </MenuItem>
+
+                <MenuItem component={RouterLink} to="/publish" onClick={handleMenuClose}>
+                  Publier
+                </MenuItem>
+
+                <MenuItem component={RouterLink} to="/messagerie" onClick={handleMenuClose}>
+                  Messagerie
+                </MenuItem>
+
+                <MenuItem component={RouterLink} to="/profile" onClick={handleMenuClose}>
+                  Profil
+                </MenuItem>
+
+                {isPassenger && (
+                  <MenuItem component={RouterLink} to="/my-reservations" onClick={handleMenuClose}>
+                    Mes réservations
+                  </MenuItem>
+                )}
+
+                {isDriver && (
+                  <MenuItem
+                    component={RouterLink}
+                    to="/trip/driver/reservations-driver"
+                    onClick={handleDriverClick}
+                  >
+                    <Badge badgeContent={newReservations} color="error">
+                      Réservations
+                    </Badge>
+                  </MenuItem>
+                )}
+
+                <Divider />
+
+                <MenuItem onClick={logout} sx={{ color: "red" }}>
+                  Déconnexion
+                </MenuItem>
+              </>
+            )}
           </Menu>
         </Box>
 
